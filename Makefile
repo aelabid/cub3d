@@ -6,11 +6,13 @@
 #    By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 07:22:21 by aelabid           #+#    #+#              #
-#    Updated: 2022/12/16 07:55:34 by aelabid          ###   ########.fr        #
+#    Updated: 2022/12/18 13:45:54 by aelabid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = cub3d.c
+SRC = cub3d.c create_matrice.c get_next_line_utils.c get_next_line.c split.c\
+		create_line.c atoi.c render_recs.c my_mlx_put.c handle_key.c render_map.c \
+		utiles_for_test.c get_sizes.c
 	
 OBJ = $(SRC:.c=.o)
 
