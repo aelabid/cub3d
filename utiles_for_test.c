@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:23:34 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/18 15:22:08 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/19 09:19:28 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ int	openfd(char *ac)
 	return (fd);
 }
 
-t_iso	**get_sizes_matrix(char *path, int *nb_row, int *nb_col)
+t_iso	**get_sizes_matrix(char *path, t_winSizes *win)
 {
 	t_iso	**matrix;
 
-	*nb_row = get_rows(openfd(path));
-	matrix = create_matrix(*nb_row, openfd(path));
-	*nb_col = number_col_matx(matrix[0]);
+	win->nb_row = get_rows(openfd(path));
+	matrix = create_matrix(win->nb_row, openfd(path));
+	win->nb_col = number_col_matx(matrix[0]);
+	win->win_h = win->nb_row * REC_SIZE;
+	win->win_w = win->nb_col * REC_SIZE;
 	return(matrix);
 }
