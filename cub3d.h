@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/24 15:05:45 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/24 18:17:59 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void    render_image();
 void  render_player();
 void  move_player();
 void  move_sides();
+int is_wall(double x, double y);
 
 //functions for test
 t_iso	*creat_line(char *str, int numcol);
