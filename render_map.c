@@ -6,13 +6,13 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:38:18 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/19 10:18:36 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/24 15:33:35 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-int render_map(t_mlx *data, t_img *img, t_iso **matrix, t_winSizes win)
+int render_map(t_iso **matrix, t_winSizes win)
 {
 	int i;
 	int j;
@@ -28,9 +28,9 @@ int render_map(t_mlx *data, t_img *img, t_iso **matrix, t_winSizes win)
 		while(j < win.nb_col)
 		{
 			if (matrix[i][j].height == 0)
-				render_empty_rect(data, img, (t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
+				render_empty_rect((t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
 			else
-				render_colored_rect(data, img, (t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
+				render_colored_rect((t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
 				
 			begX += REC_SIZE;
 			j++;

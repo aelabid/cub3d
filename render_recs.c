@@ -6,48 +6,35 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:25:22 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/18 12:26:05 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/24 18:01:17 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-int render_colored_rect(t_mlx *data, t_img *img, t_rect rect)
+int render_colored_rect(t_rect rect)
 {
 	int	i;
 	int j;
 
-	if (data->win_ptr == NULL)
+	if (mlx.win_ptr == NULL)
 		return (1);
 	i = rect.y;
 	while (i < rect.y + rect.rec_size)
 	{
-		j = rect.x;
-		while (j < rect.x + rect.rec_size)
-				my_mlx_pixel_put(img, j++, i, rect.color);
+		DDA(rect.x, i, rect.x + rect.rec_size - 1 , i);
 		++i;
 	}
 	return (0);
 }
 
-int render_empty_rect(t_mlx *data, t_img *img, t_rect rect)
+int render_empty_rect(t_rect rect)
 {
-	int	i;
-	int j;
-
-	if (data->win_ptr == NULL)
+	if (mlx.win_ptr == NULL)
 		return (1);
-	i = rect.y;
-	while (i < rect.y + rect.rec_size)
-	{
-		j = rect.x;
-		while (j < rect.x + rect.rec_size)
-		{
-			if (i == 0 || i+1 == rect.y + rect.rec_size || j == 0 || j+1 == rect.x + rect.rec_size)
-				my_mlx_pixel_put(img, j, i, rect.color);
-			j++;
-		}
-		++i;
-	}
+	DDA(rect.x, rect.y, rect.x + rect.rec_size, rect.y);
+	DDA(rect.x, rect.y, rect.x, rect.y + rect.rec_size );
+	DDA(rect.x , rect.y + rect.rec_size, rect.x + rect.rec_size, rect.y + rect.rec_size);
+	DDA(rect.x + rect.rec_size, rect.y + rect.rec_size, rect.x + rect.rec_size, rect.y );
 	return (0);
 }
