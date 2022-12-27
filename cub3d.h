@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/24 18:17:59 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/26 18:43:15 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,11 @@ typedef struct s_winSizes
 	int win_h;
 	int win_w;
 }	t_winSizes;
-
+typedef	struct s_point
+{
+	double	x;
+	double	y;
+}	t_point;
 //typedef for test
 typedef struct t_iso
 {
@@ -108,6 +112,7 @@ void  render_player();
 void  move_player();
 void  move_sides();
 int is_wall(double x, double y);
+t_point    render_center_of_player();
 
 //functions for test
 t_iso	*creat_line(char *str, int numcol);

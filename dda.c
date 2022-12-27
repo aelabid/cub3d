@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 15:39:48 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/24 16:36:29 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/24 20:15:14 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void DDA(int X0, int Y0, int X1, int Y1)
 {
     // calculate dx & dy
-    
     int dx = X1 - X0;
     int dy = Y1 - Y0;
  
