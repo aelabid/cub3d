@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:53:09 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/26 18:59:25 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/31 19:32:09 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void  render_line()
 
     nx = p.x + p.size / 2;
     ny = p.y + p.size / 2;
-    DDA(nx, ny, nx + cos(p.rotate_angle) * 40, ny + sin(p.rotate_angle) * 40);
+    DDA(nx, ny, nx + cos(p.rotate_angle) * 40, ny + sin(p.rotate_angle) * 40, WHITE_PIXEL);
 }
 
 
-void    init_player(t_winSizes win)
+void    init_player()
 {
     p.x = win.win_w / 2 - 5;
     p.y = win.win_h / 2 - 5;
@@ -62,8 +62,8 @@ void  move_sides()
 {
     int steps = p.walk_dir * p.move_speed;
 
-    p.y = p.y + cos(p.rotate_angle) * steps;
-    p.x = p.x +  sin(p.rotate_angle) * steps;
+    p.x += cos(p.rotate_angle - (M_PI / 2)) * steps ;
+    p.y += sin(p.rotate_angle - (M_PI / 2)) * steps ;
     if (p.x <= 0)
         p.x = 0;
     if(p.y <= 0)
@@ -76,7 +76,6 @@ void  move_sides()
 
 void  render_player()
 {
-    // render_colored_rect((t_rect){p.x, p.y, p.size, RED_PIXEL});
-    render_center_of_player();
-    render_line();
+    render_colored_rect((t_rect){p.x, p.y, p.size, RED_PIXEL});
+    render_lines();
 }

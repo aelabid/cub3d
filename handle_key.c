@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:29:05 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/24 17:58:47 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/29 22:35:12 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ void check_key(int key)
 	{
 		p.turn_dir = 1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
+		p.rotate_angle = norm_angle(p.rotate_angle);
 	}
 	else if (key == 124)
 	{
 		p.turn_dir = -1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
+		p.rotate_angle = norm_angle(p.rotate_angle);
 	}
 	render_image();
 }

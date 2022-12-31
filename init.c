@@ -1,34 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_wall.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 18:11:14 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/29 19:36:08 by aelabid          ###   ########.fr       */
+/*   Created: 2022/12/29 16:16:24 by aelabid           #+#    #+#             */
+/*   Updated: 2022/12/29 17:33:09 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-// int is_wall(double x, double y)
-// {
-// 	int nx;
-// 	int ny;
-    
-//     nx = floor(x / REC_SIZE);
-//     ny = floor(y / REC_SIZE);
-//     // printf("x = %d\t y = %d\t", nx, ny);
-//     // printf("height = %d\n", matrix[3][4].height);
-//     return (0);
-// }
-int is_wall(double x, double y)
+void    init_info()
 {
-	int nx;
-	int ny;
-    
-    nx = floor(x / REC_SIZE);
-    ny = floor(y / REC_SIZE);
-    return (matrix[ny][nx].height != 0);
+    info.fov = 60 * (M_PI / 180);
+    info.ray_strip = 1;
+    info.num_ray = win.win_w / info.ray_strip;
 }

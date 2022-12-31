@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:33:58 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/24 19:41:49 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/29 23:18:23 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	my_mlx_pixel_put(int x, int y, int color)
 {
+	
 	char	*dst;
 	
 	dst = img.addr + (y * img.line_length + x * (img.bits_per_pixel / 8));

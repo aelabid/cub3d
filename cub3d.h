@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/26 18:43:15 by aelabid          ###   ########.fr       */
+/*   Updated: 2022/12/31 19:31:48 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@
 #define RED_PIXEL 0x00FF0000
 #define GREEN_PIXEL 0xFF00
 #define WHITE_PIXEL 0xFFFFFF
-#define NUM_OF_ROW 11
-#define NUM_OF_COL 15
 #define REC_SIZE 32
 
 // typedef
@@ -78,23 +76,45 @@ typedef struct s_winSizes
 	int win_h;
 	int win_w;
 }	t_winSizes;
+
 typedef	struct s_point
 {
 	double	x;
 	double	y;
 }	t_point;
+
+typedef struct s_info
+{
+	double	fov;
+	double	ray_strip;
+	int	num_ray;
+}	t_info;
+
+typedef	struct s_ray
+{
+	double	ray_angle;
+	int		isUp;
+	int		isDown;
+	int		isDownL;
+	int		isRight;
+	int		isLeft;
+}	t_ray;
+
 //typedef for test
 typedef struct t_iso
 {
 	int		height;
 	int		color;
 }	t_iso;
+
 //global variables
 t_player p;
 t_mlx   mlx;
 t_img img;
 t_winSizes win;
 t_iso	**matrix;
+t_info	info;
+t_ray	ray;
 
 //functions 
 
@@ -105,14 +125,16 @@ void	my_mlx_pixel_put(int x, int y, int color);
 int render_map();
 void	get_sizes_matrix(char *path);
 void    init_player();
-void update_player(int key);
+// void update_player(int key);
 void    open_window();
 void    render_image();
 void  render_player();
 void  move_player();
 void  move_sides();
 int is_wall(double x, double y);
-t_point    render_center_of_player();
+void    init_info();
+void    render_lines();
+double  norm_angle(double ray_angle);
 
 //functions for test
 t_iso	*creat_line(char *str, int numcol);
@@ -124,6 +146,6 @@ t_iso	**create_matrix(int numrow, int fd);
 int	number_col_matx(t_iso *mat);
 int	openfd(char *ac);
 int get_rows(int fd);
-void DDA(int X0, int Y0, int X1, int Y1);
+void DDA(int X0, int Y0, int X1, int Y1, int col);
 
 #endif
