@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/31 22:36:42 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/01 18:13:20 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void    get_first_intersection_v(double ray_angle)
     first_intersection_v.x = floor(p.x / REC_SIZE) * REC_SIZE;
     if (ray.isRight)
         first_intersection_v.x += REC_SIZE;
-    first_intersection_v.y = p.y + (first_intersection_v.x - p.x) / tan(ray_angle);
+    first_intersection_v.y = p.y + (first_intersection_v.x - p.x) * tan(ray_angle);
 }
 
 void    init_step_V(double ray_angle)
@@ -114,13 +114,13 @@ void    vertical_check(double ray_angle)
     if (!ray.isRight)
         wallV.x--;
     int i =0;
-    // printf("step V.x = %f stepV.y = %f\n", stepV.x, stepV.y);
     while(wallV.x <= win.win_w && wallV.x >=0 && wallV.y <= win.win_h && wallV.y >=0)
     {
         if(is_wall(wallV.x, wallV.y))
             break;
         else
         {
+            // render_empty_rect((t_rect){wallV.x, wallV.y, 10, RED_PIXEL});
             wallV.x += stepV.x;
             wallV.y += stepV.y;
         }
@@ -147,7 +147,6 @@ void    get_closest_wall(double ray_angle)
     horiz_check(ray_angle);
     distance_h = get_distance(wallH.x, wallH.y);
     distance_v = get_distance(wallV.x, wallV.y);
-    printf("horiz %f vertical %f\n", distance_h, distance_v);
     if (distance_h < distance_v)
     {
         c_wall.x = wallH.x;
@@ -168,7 +167,7 @@ void    render_lines()
     i = 0;
     ray_angle = (p.rotate_angle - (info.fov / 2));
     
-    while (i < 1)
+    while (i < info.num_ray)
     {
         ray_angle = norm_angle(ray_angle);
         init_ray(ray_angle);
