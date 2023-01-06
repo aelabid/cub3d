@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/01 18:13:20 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/06 04:55:34 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,15 @@ void    get_closest_wall(double ray_angle)
         c_wall.x = wallV.x;
         c_wall.y = wallV.y;
     }
+    ray.distance = get_distance(c_wall.x, c_wall.y);
+}
+
+void    projected(int i)
+{
+    double  distance_to_window = (win.win_w / 2) / tan(info.fov / 2);
+    double  wall_projected_height = REC_SIZE / ray.distance * distance_to_window;
+    render_wall((t_wall){i, (win.win_h / 2) - (wall_projected_height / 2), wall_projected_height,info.ray_strip});
+    // printf("distance to  windows = %f, wall height= %f ray_distance = %f\n", distance_to_window, wall_projected_height, ray.distance);
 }
 
 void    render_lines()
@@ -164,7 +173,7 @@ void    render_lines()
     double  ray_angle;
     int     i;
 
-    i = 0;
+    i = 1;
     ray_angle = (p.rotate_angle - (info.fov / 2));
     
     while (i < info.num_ray)
@@ -175,6 +184,7 @@ void    render_lines()
         // DDA((p.x + p.size / 2), (p.y + p.size /2), (p.x + p.size / 2) + cos(ray_angle) * 40, (p.y + p.size / 2) + sin(ray_angle) * 40, RED_PIXEL);
         // DDA((p.x + p.size / 2), (p.y + p.size /2), wallH.x, wallH.y, RED_PIXEL);
         DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
+        // projected(i);
         i++;
         ray_angle += (info.fov / info.num_ray); 
     }

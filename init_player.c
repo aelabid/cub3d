@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:53:09 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/31 19:32:09 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/06 04:17:04 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,13 @@ void  move_player()
     int steps;
     
     steps = p.walk_dir * p.move_speed;
-    p.x += cos(p.rotate_angle) * steps;
-    p.y += sin(p.rotate_angle) * steps;
+    tempx = p.x + cos(p.rotate_angle) * steps;
+    tempy = p.y + sin(p.rotate_angle) * steps;
+    // if (!is_wall(tempx, tempy))
+    // {
+        p.x = tempx;
+        p.y = tempy;
+    // }
     if (p.x <= 0)
         p.x = 0;
     if (p.y <= 0)
@@ -61,17 +66,25 @@ void  move_player()
 void  move_sides()
 {
     int steps = p.walk_dir * p.move_speed;
+    double tempx;
+    double tempy;
 
-    p.x += cos(p.rotate_angle - (M_PI / 2)) * steps ;
-    p.y += sin(p.rotate_angle - (M_PI / 2)) * steps ;
+    tempx = p.x + cos(p.rotate_angle - (M_PI / 2)) * steps ;
+    tempy = p.y + sin(p.rotate_angle - (M_PI / 2)) * steps ;
+    // if (!is_wall(tempx, tempy))
+    // {
+        p.x = tempx;
+        p.y = tempy;
+    // }
     if (p.x <= 0)
         p.x = 0;
-    if(p.y <= 0)
+    if (p.y <= 0)
         p.y = 0;
     if (p.x >= win.win_w)
         p.x = win.win_w;
     if (p.y >= win.win_h)
         p.y = win.win_h;
+    
 }
 
 void  render_player()

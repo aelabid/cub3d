@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/31 19:31:48 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/02 18:15:35 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,14 @@ typedef struct s_rect
 	int color;
 }	t_rect;
 
+typedef struct s_wall
+{
+	int	x;
+	int	y;
+	int height;
+	int width;
+}	t_wall;
+
 typedef struct s_player
 {
 	double x;
@@ -98,6 +106,7 @@ typedef	struct s_ray
 	int		isDownL;
 	int		isRight;
 	int		isLeft;
+	double	distance;
 }	t_ray;
 
 //typedef for test
@@ -147,5 +156,6 @@ int	number_col_matx(t_iso *mat);
 int	openfd(char *ac);
 int get_rows(int fd);
 void DDA(int X0, int Y0, int X1, int Y1, int col);
+int render_wall(t_wall wall);
 
 #endif
