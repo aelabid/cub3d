@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:53:09 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/06 04:17:04 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/06 23:46:18 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,6 @@ void  move_sides()
 
 void  render_player()
 {
-    render_colored_rect((t_rect){p.x, p.y, p.size, RED_PIXEL});
+    // render_colored_rect((t_rect){p.x, p.y, p.size, RED_PIXEL});
     render_lines();
 }

@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/06 04:55:34 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/06 23:46:44 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void    horiz_check(double ray_angle)
     wallH.y = first_intersection_h.y;
     if (ray.isUp)
         wallH.y--;
+    // printf("win h = %d wall.y = %f win w = %d\n", win.win_h, wallH.y, win.win_w);
     int i =0;
+    // printf("x = %f y = %f\n", wallH.x, wallH.y);
     while(wallH.x <= win.win_w && wallH.x >=0 && wallH.y <= win.win_h && wallH.y >=0)
     {
         if(is_wall(wallH.x, wallH.y))
@@ -183,8 +185,8 @@ void    render_lines()
         get_closest_wall(ray_angle);
         // DDA((p.x + p.size / 2), (p.y + p.size /2), (p.x + p.size / 2) + cos(ray_angle) * 40, (p.y + p.size / 2) + sin(ray_angle) * 40, RED_PIXEL);
         // DDA((p.x + p.size / 2), (p.y + p.size /2), wallH.x, wallH.y, RED_PIXEL);
-        DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
-        // projected(i);
+        // DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
+        projected(i);
         i++;
         ray_angle += (info.fov / info.num_ray); 
     }
