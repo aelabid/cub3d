@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/02 18:15:35 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/08 13:49:24 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct	s_img {
 	int		endian;
 }	t_img;
 
+typedef struct s_texture {
+	void	*img;
+	int 	height;
+	int		width;
+	char	*path;
+}	t_texture;
 
 typedef struct s_rect
 {
@@ -107,6 +113,8 @@ typedef	struct s_ray
 	int		isRight;
 	int		isLeft;
 	double	distance;
+	double	finale_distance;
+	int		is_horizontal;
 }	t_ray;
 
 //typedef for test
@@ -124,6 +132,7 @@ t_winSizes win;
 t_iso	**matrix;
 t_info	info;
 t_ray	ray;
+t_texture texture[3];
 
 //functions 
 
@@ -144,6 +153,7 @@ int is_wall(double x, double y);
 void    init_info();
 void    render_lines();
 double  norm_angle(double ray_angle);
+void    color_background();
 
 //functions for test
 t_iso	*creat_line(char *str, int numcol);

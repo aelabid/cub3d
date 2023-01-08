@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:29:05 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/29 22:35:12 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/07 01:05:53 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@ void check_key(int key)
 		p.walk_dir = -1;
 		move_player();
     }
-	else if (key == 0)
+	else if (key == 2)
 	{
 		p.walk_dir = -1;
 		move_sides();
     }
-	else if (key == 2)
+	else if (key == 0)
 	{
 		p.walk_dir = 1;
 		move_sides();
 	}
-	else if (key == 123)
+	else if (key == 124)
 	{
 		p.turn_dir = 1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
 		p.rotate_angle = norm_angle(p.rotate_angle);
 	}
-	else if (key == 124)
+	else if (key == 123)
 	{
 		p.turn_dir = -1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
