@@ -19,6 +19,7 @@ int main(int ac, char **av)
 	fd = open(av[1], O_RDWR);
 	get_sizes_matrix(av[1]);
 	init_info();
+	
 	open_window();
 	init_player(win);
 	render_image();

@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/08 13:50:28 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/10 15:59:52 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_point	stepH;
 t_point	stepV;
 t_point	wallH;
 t_point	wallV;
-t_point	c_wall;
 
 void    init_ray(double ray_angle)
 {
@@ -169,12 +168,18 @@ void    get_finale_distance(double ray_angle)
     ray.finale_distance = ray.distance * cos(ray_angle - p.rotate_angle);
 }
 
+// int get_color()
+// {
+//     int c = texture[0]
+// }
+
 void    projected(int i)
 {
     double  distance_to_window = (win.win_w / 2) / tan(info.fov / 2);
     double  wall_projected_height = REC_SIZE / ray.finale_distance * distance_to_window;
-    render_wall((t_wall){i, (win.win_h / 2) - (wall_projected_height / 2), wall_projected_height,info.ray_strip});
-    // printf("distance to  windows = %f, wall height= %f ray_distance = %f\n", distance_to_window, wall_projected_height, ray.distance);
+
+    render_wall((t_wall){i, (win.win_h / 2) - ((int)wall_projected_height / 2), wall_projected_height,info.ray_strip});
+    // printf("distance to  windows = %f, wall height = %f ray_distance = %f\n", distance_to_window, wall_projected_height, ray.distance);
 }
 
 
@@ -186,7 +191,7 @@ void    render_lines()
 
     i = 1;
     ray_angle = (p.rotate_angle - (info.fov / 2));
-    
+    get_images();
     while (i < info.num_ray)
     {
         ray_angle = norm_angle(ray_angle);

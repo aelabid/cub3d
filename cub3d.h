@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/08 13:49:24 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/10 18:29:28 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_mlx
 
 typedef struct	s_img {
 	void	*img;
-	char	*addr;
+	char 	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -53,6 +53,10 @@ typedef struct s_texture {
 	int 	height;
 	int		width;
 	char	*path;
+	int 	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_texture;
 
 typedef struct s_rect
@@ -67,7 +71,7 @@ typedef struct s_wall
 {
 	int	x;
 	int	y;
-	int height;
+	double height;
 	int width;
 }	t_wall;
 
@@ -124,6 +128,7 @@ typedef struct t_iso
 	int		color;
 }	t_iso;
 
+
 //global variables
 t_player p;
 t_mlx   mlx;
@@ -133,6 +138,7 @@ t_iso	**matrix;
 t_info	info;
 t_ray	ray;
 t_texture texture[3];
+t_point	c_wall;
 
 //functions 
 
@@ -154,6 +160,7 @@ void    init_info();
 void    render_lines();
 double  norm_angle(double ray_angle);
 void    color_background();
+void    get_images();
 
 //functions for test
 t_iso	*creat_line(char *str, int numcol);
