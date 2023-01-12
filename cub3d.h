@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 03:19:35 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 19:45:15 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 // includes
-
+// #include "pars/cub3d.h"
 # include"mlx.h"
 # include<stdlib.h>
 # include<math.h>
@@ -121,6 +121,17 @@ typedef	struct s_ray
 	int		is_horizontal;
 }	t_ray;
 
+typedef struct s_key
+{
+	int	w;
+	int s;
+	int a;
+	int d;
+	int left;
+	int right;
+} t_key;
+
+
 //typedef for test
 typedef struct t_iso
 {
@@ -140,9 +151,10 @@ t_ray	ray;
 t_texture texture[4];
 t_point	c_wall;
 t_texture right_text;
+t_key	key_press;
 //functions 
 
-int	handle_keypress(int keysym, t_mlx   *mlx);
+int	handle_keypress();
 int render_colored_rect(t_rect rect);
 int render_empty_rect(t_rect rect);
 void	my_mlx_pixel_put(int x, int y, int color);

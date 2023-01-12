@@ -6,41 +6,41 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:29:05 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/07 01:05:53 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 19:14:24 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-void check_key(int key)
+void check_key()
 {
-    if (key == 13)
+    if (key_press.w)
 	{
 		p.walk_dir = 1;
 		move_player();
 	}
-    else if (key == 1)
+    else if (key_press.s)
 	{
 		p.walk_dir = -1;
 		move_player();
     }
-	else if (key == 2)
+	else if (key_press.d)
 	{
 		p.walk_dir = -1;
 		move_sides();
     }
-	else if (key == 0)
+	else if (key_press.a)
 	{
 		p.walk_dir = 1;
 		move_sides();
 	}
-	else if (key == 124)
+	else if (key_press.right)
 	{
 		p.turn_dir = 1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
 		p.rotate_angle = norm_angle(p.rotate_angle);
 	}
-	else if (key == 123)
+	else if (key_press.left)
 	{
 		p.turn_dir = -1;
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
@@ -49,16 +49,18 @@ void check_key(int key)
 	render_image();
 }
 
-int	handle_keypress(int keysym, t_mlx   *mlx)
+int	handle_keypress()
 {
-	if (keysym == 53)
-	{
-		mlx_destroy_image(mlx->mlx_ptr, mlx->img);
-		mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-		mlx->win_ptr = NULL;
-		exit(0);
-	} else 
-		check_key(keysym);
+	// if (keysym == 53)
+	// {
+	// 	mlx_destroy_image(mlx->mlx_ptr, mlx->img);
+	// 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	// 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+	// 	mlx->win_ptr = NULL;
+	// 	exit(0);
+	// } else 
+		check_key();
+		// printf("here\n");
+		
 	return (0);
 }
