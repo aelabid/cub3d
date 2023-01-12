@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 02:46:13 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 04:31:40 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,11 +253,11 @@ void    render_lines()
             right_text = get_right_wall(ray_angle);
             // DDA((p.x + p.size / 2), (p.y + p.size /2), (p.x + p.size / 2) + cos(ray_angle) * 40, (p.y + p.size / 2) + sin(ray_angle) * 40, RED_PIXEL);
             // DDA((p.x + p.size / 2), (p.y + p.size /2), wallV.x, wallV.y, RED_PIXEL);
-            // DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
-        //     printf("is horizontal %d\n", ray.is_horizontal);
         
-        // if( ray.is_horizontal )
+        // if( !ray.is_horizontal )
         // {
+        //     DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
+            // printf("is horizontal %d\n", ray.is_horizontal);
             projected(i);
         // }
         i++;

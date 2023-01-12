@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:53:09 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 02:56:52 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 04:35:37 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void    init_player()
 {
     p.x = win.win_w / 2 - 5;
     p.y = win.win_h / 2 - 5;
+
     p.turn_dir = 0; //left "A" right "D"
     p.walk_dir = 0; //nichan "W" lour "S"
     p.rotate_angle = 3 * (M_PI / 2);
@@ -45,11 +46,11 @@ void  move_player()
     steps = p.walk_dir * p.move_speed;
     tempx = p.x + cos(p.rotate_angle) * steps;
     tempy = p.y + sin(p.rotate_angle) * steps;
-    if (!is_wall(tempx, tempy))
-    {
+    // if (!is_wall(tempx, tempy)&& !is_wall(tempx + p.size, tempy+p.size))
+    // {
         p.x = tempx;
         p.y = tempy;
-    }
+    // }
     if (p.x <= 0)
         p.x = 0;
     if (p.y <= 0)
@@ -69,11 +70,11 @@ void  move_sides()
 
     tempx = p.x + cos(p.rotate_angle - (M_PI / 2)) * steps ;
     tempy = p.y + sin(p.rotate_angle - (M_PI / 2)) * steps ;
-    if (!is_wall(tempx, tempy) && !is_wall(tempx + p.size, tempy+p.size))
-    {
+    // if (!is_wall(tempx, tempy) && !is_wall(tempx + p.size, tempy+p.size))
+    // {
         p.x = tempx;
         p.y = tempy;
-    }
+    // }
     if (p.x <= 0)
         p.x = 0;
     if (p.y <= 0)
