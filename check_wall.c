@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/24 18:11:14 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 05:04:18 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 23:32:15 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ int	is_wall(double x, double y)
 		nx = win.nb_col - 1;
 	if (ny >= win.nb_row)
 		ny = win.nb_row - 1;
-	return (matrix[ny][nx].height != 0);
+	return (matrix[ny][nx] != '0');
 }

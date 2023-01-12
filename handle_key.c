@@ -6,13 +6,13 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:29:05 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 19:14:24 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:41:01 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-void check_key()
+void check_key(t_data data)
 {
     if (key_press.w)
 	{
@@ -46,10 +46,10 @@ void check_key()
 		p.rotate_angle += p.turn_dir * p.rotat_speed;
 		p.rotate_angle = norm_angle(p.rotate_angle);
 	}
-	render_image();
+	render_image(data);
 }
 
-int	handle_keypress()
+int	handle_keypress(t_data *data)
 {
 	// if (keysym == 53)
 	// {
@@ -59,7 +59,7 @@ int	handle_keypress()
 	// 	mlx->win_ptr = NULL;
 	// 	exit(0);
 	// } else 
-		check_key();
+		check_key(*data);
 		// printf("here\n");
 		
 	return (0);

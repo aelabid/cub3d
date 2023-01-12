@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 19:45:15 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:43:43 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 # define CUB3D_H
 
 // includes
-// #include "pars/cub3d.h"
+#include "pars/cub.h"
 # include"mlx.h"
 # include<stdlib.h>
 # include<math.h>
 # include<stdio.h>
 # include <unistd.h>
 # include <math.h>
-# include"get_next_line.h"
+// # include"get_next_line.h"
 
 // #include <X11/X.h>
 // #include <X11/keysym.h>
@@ -145,7 +145,7 @@ t_player p;
 t_mlx   mlx;
 t_img img;
 t_winSizes win;
-t_iso	**matrix;
+char	**matrix;
 t_info	info;
 t_ray	ray;
 t_texture texture[4];
@@ -154,26 +154,26 @@ t_texture right_text;
 t_key	key_press;
 //functions 
 
-int	handle_keypress();
+int	handle_keypress(t_data *data);
 int render_colored_rect(t_rect rect);
 int render_empty_rect(t_rect rect);
 void	my_mlx_pixel_put(int x, int y, int color);
 int render_map();
 void	get_sizes_matrix(char *path);
-void    init_player();
+void    init_player(t_map *map);
 // void update_player(int key);
 void    open_window();
-void    render_image();
-void  render_player();
+void    render_image(t_data data);
+void  render_player(t_data data);
 void  move_player();
 void  move_sides();
 int is_wall(double x, double y);
 void    init_info();
-void    render_lines();
+void    render_lines(t_data data);
 double  norm_angle(double ray_angle);
-void    color_background();
-void    get_images();
-
+void    color_background(t_data data);
+void    get_images(t_data data);
+void    get_sizes(t_map  *map);
 //functions for test
 t_iso	*creat_line(char *str, int numcol);
 char	**ft_split(char const *s, char c);

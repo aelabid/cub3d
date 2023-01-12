@@ -52,24 +52,70 @@ int	quit(void)
 	exit(0);
 	return (0);
 }
+
+void	check_texdata(t_data *data)
+{
+	if(!data->no || !data->so || !data->we || 
+				!data->ea || !data->f || !data->c)
+		error_function("Incomplet Map");
+}
+
+void	print_map(char **str)
+{
+	printf("####################################\n");
+	int i = 0;
+	while(str[i])
+	{
+		printf("{%s}\n", str[i]);
+		i++;
+	}
+	printf("####################################\n");
+}
+
 int main(int ac, char **av)
 {
-	int fd;
+	t_data data;
+	t_map	map;
+
+	printf("%s\n", av[1]);
+	parsing(ac, av, &data, &map);
+	check_texdata(&data);
+	printf("\nValide Map\n");
+	printf("NO: %s\n", data.no);
+	printf("SO: %s\n", data.so);
+	printf("WE: %s\n", data.we);
+	printf("EA: %s\n", data.ea);
+	printf("F: %s\n", data.f);
+	printf("C: %s\n", data.c);
 	
-	fd = open(av[1], O_RDWR);
-	get_sizes_matrix(av[1]);
+	print_map(map.matrice);
+
+	printf("x of player: %d\n", map.x);
+	printf("y of player: %d\n", map.y);
+	printf("direction of player: %c\n", map.dir);
+
+
+	
+	printf("\ncolor in hexa: %d\n", convert_color(data.f));
+
+
+	printf("X = %d\n", ft_spllen(map.matrice));
+	printf("Y = %d\n", (int)ft_strlen(map.matrice[0]));
+	get_sizes(&map);
 	init_info();
-	
+
 	open_window();
-	init_player(win);
-	render_image();
-	// mlx_key_hook(mlx.win_ptr, &handle_keypress, &mlx);
+	init_player(&map);
 
-
+	// fd = open(av[1], O_RDWR);
+	// get_sizes_matrix(av[1]);
+	
+	// render_image();
+	// // mlx_key_hook(mlx.win_ptr, &handle_keypress, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 0, register_keys, NULL);
 	mlx_hook(mlx.win_ptr, 3, 0, key_rel, NULL);
 	mlx_hook(mlx.win_ptr, 17, 0, quit, NULL);
-	mlx_loop_hook(mlx.mlx_ptr, handle_keypress, NULL);
+	mlx_loop_hook(mlx.mlx_ptr, handle_keypress, &data);
 	mlx_loop(mlx.mlx_ptr);
 	free(mlx.mlx_ptr);
 }

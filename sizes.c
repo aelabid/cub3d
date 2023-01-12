@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_background.c                                 :+:      :+:    :+:   */
+/*   sizes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 00:00:21 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/13 00:48:07 by aelabid          ###   ########.fr       */
+/*   Created: 2023/01/12 21:02:35 by aelabid           #+#    #+#             */
+/*   Updated: 2023/01/12 23:01:07 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-void	color_background(t_data data)
+void    get_sizes(t_map  *map)
 {
-	int	i;
-
-	i = 0;
-	while (i < win.win_h / 2)
-	{
-		DDA(0, i, win.win_w, i, convert_color(data.c));
-		i++;
-	}
-	while (i < win.win_h)
-	{
-		DDA(0, i, win.win_w, i, convert_color(data.f));
-		i++;
-	}
+    matrix = map->matrice;
+    win.nb_row = ft_spllen(map->matrice);
+    win.nb_col = ft_strlen(map->matrice[0]);
+    win.win_h = win.nb_row * REC_SIZE;
+	win.win_w = win.nb_col * REC_SIZE;
 }

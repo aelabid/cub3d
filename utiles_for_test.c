@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:23:34 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/19 12:13:48 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 21:02:11 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	openfd(char *ac)
 	fd = open(ac, O_RDWR);
 	return (fd);
 }
+
 
 void	get_sizes_matrix(char *path)
 {

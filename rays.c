@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/12 05:02:02 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:36:39 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,14 +206,14 @@ t_texture	get_right_wall(double  ray_angle)
 
 	}
 }
-void    render_lines()
+void    render_lines(t_data data)
 {
 	double  ray_angle;
 	int     i;
 
 	i = 1;
 	ray_angle = (p.rotate_angle - (info.fov / 2));
-	get_images();
+	get_images(data);
 	while (i < info.num_ray)
 	{
 		ray_angle = norm_angle(ray_angle);

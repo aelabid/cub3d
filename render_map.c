@@ -6,13 +6,13 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 12:38:18 by aelabid           #+#    #+#             */
-/*   Updated: 2022/12/29 17:51:10 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/13 00:08:22 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"cub3d.h"
 
-int render_map(t_iso **matrix, t_winSizes win)
+int render_map()
 {
 	int i;
 	int j;
@@ -21,17 +21,16 @@ int render_map(t_iso **matrix, t_winSizes win)
 
 	i = 0;
 	j = 0;
-	while (i < win.nb_row)
+	while (matrix[i])
 	{
 		begX = 0;
 		j = 0;
-		while(j < win.nb_col)
+		while(matrix[i][j])
 		{
-			if (matrix[i][j].height == 0)
+			if (matrix[i][j] == '0')
 				render_empty_rect((t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
-			else 
+			else if(matrix[i][j] == '1')
 				render_colored_rect((t_rect){begX, begY, REC_SIZE, WHITE_PIXEL});
-				
 			begX += REC_SIZE;
 			j++;
 		}
