@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 07:14:53 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/10 18:29:28 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 02:46:42 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ typedef struct s_rect
 
 typedef struct s_wall
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 	double height;
-	int width;
+	double width;
 }	t_wall;
 
 typedef struct s_player
@@ -137,9 +137,9 @@ t_winSizes win;
 t_iso	**matrix;
 t_info	info;
 t_ray	ray;
-t_texture texture[3];
+t_texture texture[4];
 t_point	c_wall;
-
+t_texture right_text;
 //functions 
 
 int	handle_keypress(int keysym, t_mlx   *mlx);
@@ -174,5 +174,5 @@ int	openfd(char *ac);
 int get_rows(int fd);
 void DDA(int X0, int Y0, int X1, int Y1, int col);
 int render_wall(t_wall wall);
-
+// t_texture	get_right_wall();
 #endif

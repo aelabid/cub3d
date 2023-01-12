@@ -6,7 +6,7 @@
 /*   By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:33:24 by aelabid           #+#    #+#             */
-/*   Updated: 2023/01/10 15:59:52 by aelabid          ###   ########.fr       */
+/*   Updated: 2023/01/12 02:46:13 by aelabid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,11 @@ void    get_closest_wall(double ray_angle)
     horiz_check(ray_angle);
     distance_h = get_distance(wallH.x, wallH.y);
     distance_v = get_distance(wallV.x, wallV.y);
-    if (distance_h < distance_v)
+    // printf("wall_h_x %f wall_h_y %f \twall_v_x %f wall_v_y %f\n", wallH.x, wallH.y, wallV.x, wallV.y);
+    // printf("horizontal distance = %f, vertical distance = %f \n", distance_h, distance_v);
+    // printf("horizontal distance = %f, vertical distance = %f \n", distance_h, distance_v);
+
+    if (distance_h < distance_v )
     {
         c_wall.x = wallH.x;
         c_wall.y = wallH.y;
@@ -160,6 +164,18 @@ void    get_closest_wall(double ray_angle)
         c_wall.y = wallV.y;
         ray.is_horizontal = 0;
     }
+    if ((int) wallV.y == (int) wallH.y)
+    {
+        c_wall.x = wallH.x;
+        c_wall.y = wallH.y;
+        ray.is_horizontal = 1;
+    }
+    else if ((int) wallV.x == (int) wallH.x)
+    {
+        ray.is_horizontal = 0;
+        c_wall.x = wallV.x;
+        c_wall.y = wallV.y;
+    }
     ray.distance = get_distance(c_wall.x, c_wall.y);
 }
 
@@ -167,6 +183,7 @@ void    get_finale_distance(double ray_angle)
 {
     ray.finale_distance = ray.distance * cos(ray_angle - p.rotate_angle);
 }
+
 
 // int get_color()
 // {
@@ -183,7 +200,42 @@ void    projected(int i)
 }
 
 
+// t_texture	get_right_wall(double  ray_angle)
+// {
+// 	if (ray.is_horizontal)
+// 	{
+// 		if((ray_angle <= (2 * M_PI) && ray_angle >= M_PI))
+// 			return (texture[1]);
+// 		else
+// 			return (texture[0]);
+// 	}
+// 	else
+// 	{
+// 		if((ray_angle <= 3 * M_PI / 2 && ray_angle >= M_PI/2))
+// 			return (texture[3]);
+// 		else
+// 			return (texture[2]);
 
+// 	}
+// }
+t_texture	get_right_wall(double  ray_angle)
+{
+	if (ray.is_horizontal)
+	{
+		if((ray_angle <= (2 * M_PI) && ray_angle >= M_PI))
+			return (texture[1]);
+		else
+			return (texture[0]);
+	}
+	else
+	{
+		if((ray_angle <= 3 * M_PI / 2 && ray_angle >= M_PI/2))
+			return (texture[3]);
+		else
+			return (texture[2]);
+
+	}
+}
 void    render_lines()
 {
     double  ray_angle;
@@ -194,14 +246,20 @@ void    render_lines()
     get_images();
     while (i < info.num_ray)
     {
-        ray_angle = norm_angle(ray_angle);
-        init_ray(ray_angle);
-        get_closest_wall(ray_angle);
-        get_finale_distance(ray_angle);
-        // DDA((p.x + p.size / 2), (p.y + p.size /2), (p.x + p.size / 2) + cos(ray_angle) * 40, (p.y + p.size / 2) + sin(ray_angle) * 40, RED_PIXEL);
-        // DDA((p.x + p.size / 2), (p.y + p.size /2), wallH.x, wallH.y, RED_PIXEL);
-        // DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
-        projected(i);
+            ray_angle = norm_angle(ray_angle);
+            init_ray(ray_angle);
+            get_closest_wall(ray_angle);
+            get_finale_distance(ray_angle);
+            right_text = get_right_wall(ray_angle);
+            // DDA((p.x + p.size / 2), (p.y + p.size /2), (p.x + p.size / 2) + cos(ray_angle) * 40, (p.y + p.size / 2) + sin(ray_angle) * 40, RED_PIXEL);
+            // DDA((p.x + p.size / 2), (p.y + p.size /2), wallV.x, wallV.y, RED_PIXEL);
+            // DDA((p.x + p.size / 2), (p.y + p.size /2), c_wall.x, c_wall.y, RED_PIXEL);
+        //     printf("is horizontal %d\n", ray.is_horizontal);
+        
+        // if( ray.is_horizontal )
+        // {
+            projected(i);
+        // }
         i++;
         ray_angle += (info.fov / info.num_ray); 
     }
