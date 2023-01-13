@@ -6,15 +6,15 @@
 #    By: aelabid <aelabid@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/16 07:22:21 by aelabid           #+#    #+#              #
-#    Updated: 2023/01/13 00:50:52 by aelabid          ###   ########.fr        #
+#    Updated: 2023/01/13 01:19:12 by aelabid          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = cub3d.c create_matrice.c split.c\
-		create_line.c atoi.c render_recs.c my_mlx_put.c handle_key.c render_map.c \
-		 get_sizes.c init_player.c open_windows.c render_image.c dda.c\
-		sizes.c\
-		check_wall.c rays.c init.c color_background.c get_texture_image.c\
+SRC = execution/check_wall.c execution/color_background.c execution/cub3d.c\
+		execution/dda.c execution/get_texture_image.c execution/handle_key.c\
+		execution/init_player.c execution/init.c execution/my_mlx_put.c\
+		execution/open_windows.c execution/rays.c execution/render_image.c\
+		execution/render_recs.c execution/sizes.c\
 		pars/main.c pars/get_next_line.c pars/get_next_line_utils.c pars/parsing.c pars/parsing_utils.c \
 		pars/check_map.c pars/convert_color.c
 
